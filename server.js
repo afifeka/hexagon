@@ -28,7 +28,7 @@ client.on('message', async msg => { // eslint-disable-line
     if (!msg.content.startsWith(prefix)) return undefined;
    
       function randomStatus() {
-    let status = [`iskuat.zapto.org`, `Ketik +help`, `ISKUAT OFFICIAL`]
+    let status = [`Report Hacker!!`, `Ketik +help`, `Hexagon Discord`]
     let rstatus = Math.floor(Math.random() * status.length);
     client.user.setActivity(status[rstatus], {type: 'STREAMING'});
 

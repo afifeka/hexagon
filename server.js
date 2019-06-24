@@ -26,13 +26,6 @@ client.on('reconnecting', () => console.log('I am reconnecting now!'));
 client.on('message', async msg => { // eslint-disable-line
     if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
-   
-      function randomStatus() {
-    let status = [`Report Hacker!!`, `Ketik +help`, `Hexagon Discord`]
-    let rstatus = Math.floor(Math.random() * status.length);
-    client.user.setActivity(status[rstatus], {type: 'STREAMING'});
-
-    }; setInterval(randomStatus, 15000)
   
     const args = msg.content.split(' ');
     const searchString = args.slice(1).join(' ');

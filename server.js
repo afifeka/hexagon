@@ -28,7 +28,7 @@ client.on('reconnecting', () => console.log('I am reconnecting now!'));
 
 client.on("MessageReactionAdd", function(users) {
 	if (message.content === "+verify") {
-	  users.addRole("510450786958966794)
+	  users.addRole("510450786958966794")
 });
 
 client.on("MessageReactionRemove", function(users) {

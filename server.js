@@ -26,6 +26,16 @@ client.on('disconnect', () => console.log('I just disconnected, making sure you 
  
 client.on('reconnecting', () => console.log('I am reconnecting now!'));
 
+client.on("MessageReactionAdd", function(users) {
+	if (message.content === "+verify") {
+	  users.addRole("510450786958966794)
+});
+
+client.on("MessageReactionRemove", function(users) {
+	if (message.content === "+verify") {
+	  users.removeRole("596004862597136400")
+});
+
 client.on("message", (message) => {
   if (message.content.includes("https://discord.gg")) {
     console.log("deleted " + message.content + " from " + message.author)

@@ -28,9 +28,9 @@ client.on('reconnecting', () => console.log('I am reconnecting now!'));
 
 client.on("messageReactionAdd", (reaction, user) => {
   if (user.bot) return;
-  const member = reaction.msg.member
   switch (reaction.name) {
     case ":Hexagon2":
+    const member = reaction.msg.member
     member.addRole("510450786958966794").then((res) => {
     }).catch(console.error);
     break;
@@ -39,9 +39,9 @@ client.on("messageReactionAdd", (reaction, user) => {
 
 client.on("messageReactionRemove", (reaction, user) => {
   if (user.bot) return;
-  const member = reaction.msg.member
   switch (reaction.name) {
     case ":Hexagon2":
+    const member = reaction.msg.member
     member.removeRole("596004862597136400").then((res) => {
     }).catch(console.error);
     break;

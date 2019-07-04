@@ -34,6 +34,7 @@ client.on("messageReactionAdd", (reaction, user) => {
     member.addRole("510450786958966794").then((res) => {
     }).catch(console.error);
     break;
+  };
 })
 
 client.on("messageReactionRemove", (reaction, user) => {

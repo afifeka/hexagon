@@ -41,7 +41,7 @@ client.on('message', async msg => { // eslint-disable-line
     if (!msg.content.startsWith(prefix)) return undefined;
    
        function randomStatus() {
-    let status = [`iskuat.zapto.org`, `Ketik +help`, `ISKUAT OFFICIAL`]
+    let status = [`IP >> iskuat.zapto.org`, `Ketik +help`, `PORT >> 19132`]
     let rstatus = Math.floor(Math.random() * status.length);
     client.user.setActivity(status[rstatus], {type: 'STREAMING'});
 
@@ -67,8 +67,7 @@ client.on('message', async msg => { // eslint-disable-line
 
   
     if(command === "kick") {
-    if(!msg.member.roles.some(r=>["🔑STAFF"].includes(r.name)) )
-      return msg.reply("Tidak ada perizinan");
+    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
     
     let member = msg.mentions.members.first() || msg.guild.members.get(args[0]);
     if(!member)
@@ -89,7 +88,7 @@ client.on('message', async msg => { // eslint-disable-line
   
   if(command === "warn"){
     
-  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
+  if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
   let wUser = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.get(args[0])
   if(!wUser) return msg.reply("Member tidak ditemukan");
   let reason = args.slice(1).join(' ');
@@ -136,7 +135,7 @@ client.on('message', async msg => { // eslint-disable-line
 }
   
       if(command === "ban") {
-    if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
+    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
     let member = msg.mentions.members.first();
     if(!member)
       return msg.reply("member tidak ditemukan");

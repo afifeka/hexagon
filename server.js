@@ -67,7 +67,7 @@ client.on('message', async msg => { // eslint-disable-line
 
   
     if(command === "kick") {
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
+    if(!msg.member.hasPermission("ADMINISTRATOR")) return msg.channel.send("Anda tidak izin untuk menggunakan command ini");
     
     let member = msg.mentions.members.first() || msg.guild.members.get(args[0]);
     if(!member)
@@ -88,7 +88,7 @@ client.on('message', async msg => { // eslint-disable-line
   
   if(command === "warn"){
     
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
+  if(!msg.member.hasPermission("ADMINISTRATOR")) return msg.channel.send("Anda tidak izin untuk menggunakan command ini");
   let wUser = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.get(args[0])
   if(!wUser) return msg.reply("Member tidak ditemukan");
   let reason = args.slice(1).join(' ');
@@ -135,7 +135,7 @@ client.on('message', async msg => { // eslint-disable-line
 }
   
       if(command === "ban") {
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
+    if(!msg.member.hasPermission("ADMINISTRATOR")) return msg.channel.send("Anda tidak izin untuk menggunakan command ini");
     let member = msg.mentions.members.first();
     if(!member)
       return msg.reply("member tidak ditemukan");

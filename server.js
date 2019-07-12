@@ -119,17 +119,7 @@ client.on('message', async msg => { // eslint-disable-line
     }, ms(mutetime))
   }
   if(warns[wUser.id].warns == 4){
-    let freezerole = msg.guild.roles.find(`name`, "Freeze");
-    if(!freezerole) return msg.reply("Role Freeze tidak ada");
-
-    let freezetime = "3600s";
-    await(wUser.addRole(freezerole.id));
-    msg.channel.send(`<@${wUser.id}> terkena **FREEZE** selama ${freezetime}, karena telah mendapatkan 4x warned`);
-
-    setTimeout(function(){
-      wUser.removeRole(freezerole.id)
-      msg.reply(`<@${wUser.id}> telah bebas dari **FREEZE**`)
-    }, ms(freezetime))
+    wUser.kick(reason)
   }
 
 }
@@ -140,7 +130,7 @@ client.on('message', async msg => { // eslint-disable-line
     if(!member)
       return msg.reply("member tidak ditemukan");
     if(!member.bannable) 
-      return msg.reply("Pasngkat dia lebih tinggi tidak bisa dibanned");
+      return msg.reply("Pangkat dia lebih tinggi tidak bisa dibanned");
 
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "No reason provided";

@@ -26,48 +26,13 @@ client.on('disconnect', () => console.log('I just disconnected, making sure you 
  
 client.on('reconnecting', () => console.log('I am reconnecting now!'));
 
-client.on("messageReactionAdd", (reaction, user) => {
-  if (user.bot) return;
-  switch (reaction.name) {
-    case ":Hexagon2":
-    const member = reaction.msg.member
-    member.addRole("510450786958966794").then((res) => {
-    }).catch(console.error);
-    break;
-  };
-})
-
-client.on("messageReactionRemove", (reaction, user) => {
-  if (user.bot) return;
-  switch (reaction.name) {
-    case ":Hexagon2":
-    const member = reaction.msg.member
-    member.removeRole("596004862597136400").then((res) => {
-    }).catch(console.error);
-    break;
-  };
-})
-
-client.on("message", (message) => {
-  if (message.content.includes("https://discord.gg")) {
-    console.log("deleted " + message.content + " from " + message.author)
-    message.delete(1);
-    message.channel.sendMessage("Anda tidak boleh share link discord!")
-  }
-  if (message.content.includes("http://discord.gg")) {
-    console.log("deleted " + message.content + " from " + message.author)
-    message.delete(1);
-    message.channel.sendMessage("Anda tidak boleh share link discord!")
-  }
-});
-
 client.on("guildMemberAdd", (member) => {
-  let joinchannel = client.channels.get("510446349943308290")
+  let joinchannel = client.channels.get("582824333836156948")
   joinchannel.send(`Selamat datang **${member}** di Hexagon Discord, patuhi peraturan yang berlaku!`)
 });
 
 client.on("guildMemberRemove", (member) => {
-  let leavechannel = client.channels.get("510446349943308290")
+  let leavechannel = client.channels.get("582824333836156948")
   leavechannel.send(`Selamat tinggal **${member.user.username}**, jangan lupa mabar!`)
 });
  
@@ -75,13 +40,12 @@ client.on('message', async msg => { // eslint-disable-line
     if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
    
-      //function randomStatus() {
-    //let status = [`iskuat.zapto.org`, `Ketik +help`, `ISKUAT OFFICIAL`]
-    //let rstatus = Math.floor(Math.random() * status.length);
-    //client.user.setActivity(status[rstatus], {type: 'STREAMING'});
+       function randomStatus() {
+    let status = [`iskuat.zapto.org`, `Ketik +help`, `ISKUAT OFFICIAL`]
+    let rstatus = Math.floor(Math.random() * status.length);
+    client.user.setActivity(status[rstatus], {type: 'STREAMING'});
 
-    //}; setInterval(randomStatus, 15000)
-    client.user.setGame("Tidak memutar music!")
+    }; setInterval(randomStatus, 15000)
   
     const args = msg.content.split(' ');
     const searchString = args.slice(1).join(' ');
@@ -125,8 +89,7 @@ client.on('message', async msg => { // eslint-disable-line
   
   if(command === "warn"){
     
-  if(!msg.member.roles.some(r=>["🔑STAFF"].includes(r.name)) )
-    return msg.reply("Tidak ada perizinan");
+  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
   let wUser = msg.guild.member(msg.mentions.users.first()) || msg.guild.members.get(args[0])
   if(!wUser) return msg.reply("Member tidak ditemukan");
   let reason = args.slice(1).join(' ');
@@ -173,9 +136,7 @@ client.on('message', async msg => { // eslint-disable-line
 }
   
       if(command === "ban") {
-    if(!msg.member.roles.some(r=>["🔑STAFF"].includes(r.name)) )
-      return msg.reply("tidak memiliki perizinan");
-    
+    if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("Anda tidak izin untuk menggunakan command ini");
     let member = msg.mentions.members.first();
     if(!member)
       return msg.reply("member tidak ditemukan");
@@ -201,22 +162,6 @@ client.on('message', async msg => { // eslint-disable-line
     msg.channel.send(help)
     }
   
-      if (command === "rank") {
-    let rankembed = new Discord.RichEmbed()
-    .setDescription(`***DAFTAR RANK***\n**FREE RANK**\n*VOTER* : Voter 10 kali untuk server Hexagon\n*YOUTUBER* : Harus mempunyai 500+ subscriber\n*BESTBUILD* : Bangun rumah paling bagus\n*IRON* : Dengan membayar 10jt Hexagon Money\n*GOLD* : Dengan membayar 30jt Hexagon Money
-    ***PREMIUM RANK***\n*DIAMOND* : Membayar 10k Pulsa\n*EMERALD* : Membayar 20k Pulsa\n*BEDROCK* : Membayar 35k Pulsa`)
-    .setColor("GREEN")
-    .setFooter("Ingin tahu apa saja yang bisa dilakukan dengan rank diatas? ketik +rankpermission")
-    msg.channel.send(rankembed)
-  }
-
-  if(command == "rankpermission") {
-    let embed10 = new Discord.RichEmbed()
-    .setDescription(`***PERMISSION***\n*VOTER* : Fly, Kit Voter\n*YOUTUBER* : Fly, Kit Youtuber\n*BESTBUILD* : Gamemode, Fly, Kit BestBuild\n*IRON* : Fly, Kit Iron\n*GOLD* : Fly, Size, Kit Gold\n*DIAMOND* : Fly, Size, Kit Diamond\n*EMERALD* : Fly, Size, Player head, Kit Emerald\n*BEDROCK* : Fly, Size, Player head, Gamemode, Slapper, Teleport`)
-    .setColor("GREEN")
-    .setFooter("Untuk pembelian rank bisa hubungi RanggaGaming14/MasApip")
-    msg.channel.send(embed10)
-  }
  
     if (command === 'play') {
         const voiceChannel = msg.member.voiceChannel;

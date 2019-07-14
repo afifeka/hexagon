@@ -56,6 +56,7 @@ client.on('message', async msg => { // eslint-disable-line
     command = command.slice(prefix.length)
   
   if(command === "say") {
+    if (msg.author.id !== '331616752767205378') return;
     // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
     // To get the "message" itself we join the `args` back into a string with spaces: 
     const sayMessage = args.slice(1).join(' ');

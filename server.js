@@ -40,12 +40,13 @@ client.on('message', async msg => { // eslint-disable-line
     if (msg.author.bot) return undefined;
     if (!msg.content.startsWith(prefix)) return undefined;
    
-       function randomStatus() {
-    let status = [`IP >> iskuat.zapto.org`, `Ketik +help`, `PORT >> 19132`]
-    let rstatus = Math.floor(Math.random() * status.length);
-    client.user.setActivity(status[rstatus], {type: 'STREAMING'});
+    #   function randomStatus() {
+    #let status = [`IP >> iskuat.zapto.org`, `Ketik +help`, `PORT >> 19132`]
+    #let rstatus = Math.floor(Math.random() * status.length);
+    #client.user.setActivity(status[rstatus], {type: 'STREAMING'});
 
-    }; setInterval(randomStatus, 15000)
+    #}; setInterval(randomStatus, 15000)
+    client.user.setActivity("Server Iskuat", {type: "WATCHING"});
   
     const args = msg.content.split(' ');
     const searchString = args.slice(1).join(' ');

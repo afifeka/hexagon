@@ -87,7 +87,9 @@ client.on('message', async msg => { // eslint-disable-line
     msg.reply(`${member.user.tag} telah dikeluarkan oleh ${msg.author.tag} karena ${reason}`);
 
     }
-  
+  if(command === "nick"){
+	  msg.guild.members.get(client.user.id).setNickname(args[0]);
+  }
   if(command === "warn"){
     
   if(!msg.member.hasPermission("ADMINISTRATOR")) return msg.channel.send("Anda tidak izin untuk menggunakan command ini");
